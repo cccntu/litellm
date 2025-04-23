@@ -290,6 +290,13 @@ class BaseConfig(ABC):
 
         Update the headers with the signed headers in this function. The return values will be sent as headers in the http request.
         """
+        # If fake_stream is True, ensure Accept header is application/json
+        # This ensures providers that don't support streaming receive proper header
+        if fake_stream is True and headers is not None:
+            headers = headers.copy()
+            # Set Accept to application/json when fake_stream is True
+            headers["accept"] = "application/json"
+        
         return headers
 
     def get_complete_url(

@@ -144,6 +144,7 @@ class OpenAILikeChatHandler(OpenAILikeBase):
             messages=messages,
             logging_obj=logging_obj,
             streaming_decoder=streaming_decoder,
+            fake_stream=fake_stream,
         )
         streamwrapper = CustomStreamWrapper(
             completion_stream=completion_stream,
